@@ -1,3 +1,18 @@
+# Go Rest api
+
+Hi ! This is my first little project in golang.
+I'm learning this super language by making a fully operational rest api wich retrieve users comments
+
+## techs
+
+- gorm
+- gorill/mux
+- logrus
+- go 1.17
+
+- docker
+
+
 ## instruction
 
 docker :
