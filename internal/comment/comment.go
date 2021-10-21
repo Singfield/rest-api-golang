@@ -2,12 +2,12 @@ package comment
 
 import "github.com/jinzhu/gorm"
 
-// service - the struct for our comment service
+// Service - the struct for our comment service
 type Service struct {
 	DB *gorm.DB
 }
 
-// defie comment structure
+// Comment define comment structure
 type Comment struct {
 	gorm.Model
 	Slug    string
@@ -16,7 +16,7 @@ type Comment struct {
 	Created string
 }
 
-// The interface for our comment service
+// CommentService The interface for our comment service
 type CommentService interface {
 	GetComment(ID uint) (Comment, error)
 	GetCommentBySlug(slug string) ([]Comment, error)
@@ -32,7 +32,7 @@ func NewService(db *gorm.DB) *Service {
 	}
 }
 
-// Retrived comments by their id from the database
+// GetComment Retrieved comments by their id from the database
 func (s *Service) GetComment(ID uint) (Comment, error) {
 	var comment Comment
 
@@ -42,7 +42,7 @@ func (s *Service) GetComment(ID uint) (Comment, error) {
 	return comment, nil
 }
 
-// retrieves all comments by slug (path - /article/name/)
+// GetCommentBySlug retrieves all comments by slug (path - /article/name/)
 func (s *Service) GetCommentBySlug(slug string) ([]Comment, error) {
 	var comments []Comment
 	if result := s.DB.Find(&comments).Where("slug = ?", slug); result.Error != nil {

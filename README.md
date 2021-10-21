@@ -44,3 +44,9 @@ export DB_HOST=localhost
 ## launch
 
 ``` go run cmd/server/main.go```
+
+## test endpoint
+
+**api/comments** (Post)
+
+```curl --header "Content-Type: application/json" -d "{Slug:"/", Body:"first commit",Author:"test",Created:"User"}" http://localhost:8000/api/comments -v```

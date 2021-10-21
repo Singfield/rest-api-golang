@@ -9,6 +9,8 @@ import (
 	transportHTTP "github.com/singfield/rest-api-golang/internal/transport/http"
 )
 
+
+const PORT string = ":8000"
 // contains things like the
 // pointers to database connections
 type App struct{}
@@ -27,13 +29,13 @@ func (app *App) Run() error {
 	if err !=nil {
 		return err
 	}
-	
+
 	commentService := comment.NewService(db)
 
 	handler := transportHTTP.NewHandler(commentService)
 	handler.SetupRoutes()
 
-	if err := http.ListenAndServe(":8000", handler.Router); err != nil {
+	if err := http.ListenAndServe(PORT, handler.Router); err != nil {
 		fmt.Println("Failed to set up server")
 		return err
 	}
@@ -41,6 +43,7 @@ func (app *App) Run() error {
 }
 
 func main() {
+	fmt.Print("Application listenning at localhost",PORT, "\n")
 	app := App{}
 	if err := app.Run(); err != nil {
 		fmt.Println("Error Starting Up")
